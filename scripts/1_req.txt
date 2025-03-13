@@ -1,0 +1,16 @@
+# Tof
+在ros中订阅/xv_sdk/xv_dev/tof_camera/point_cloud话题，在pcl/opencv中动态绘制3d的点云数据，只展示当点帧数据，上一帧清掉，分别用python和c++实现，话题的数据格式是：
+gym@gym:~$ rostopic info /xv_sdk/xv_dev/tof_camera/point_cloud
+Type: sensor_msgs/PointCloud2
+
+Publishers: 
+ * /xv_sdk (http://gym:43357/)
+
+Subscribers: 
+ * /pointcloud_listener (http://gym:40495/)
+
+
+gym@gym:~$ rostopic type /xv_sdk/xv_dev/tof_camera/point_cloud
+sensor_msgs/PointCloud2
+
+# 
