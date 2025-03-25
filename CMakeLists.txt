@@ -22,6 +22,7 @@ find_package(catkin REQUIRED
     image_transport
     ddynamic_reconfigure
     tf2_ros
+    cv_bridge
 )
 
 ## Find system libraries
@@ -29,6 +30,9 @@ find_package(Eigen3 REQUIRED)
 find_package(Boost REQUIRED)
 find_package(OpenCV REQUIRED)
 find_package(PCL REQUIRED)
+# Find xvsdk
+find_package(xvsdk REQUIRED)
+include_directories(${xvsdk_INCLUDE_DIRS})
 
 ###################################
 ## catkin specific configuration ##
@@ -122,6 +126,7 @@ add_executable(tof_point_color src/tof_point_color.cpp)
 add_executable(tof_slam_color src/tof_slam_color.cpp)
 add_executable(tof_slam_filter_save src/tof_slam_filter_save.cpp)
 add_executable(slam_start src/slam_start.cpp)
+add_executable(stereo_pub src/stereo_pub.cpp)
 
 
 # Link the libraries for each executable
@@ -170,7 +175,11 @@ target_link_libraries(tof_slam_filter3
 target_link_libraries(ex1
   ${catkin_LIBRARIES}
   ${PCL_LIBRARIES}
+  ${OpenCV_INCLUDE_DIRS}
+  ${OpenCV_LIBS}
+  ${xvsdk_LIBRARIES}
 )
+# target_link_libraries(ex1 ${catkin_LIBRARIES} ${OpenCV_INCLUDE_DIRS} ${OpenCV_LIBS} ${xvsdk_LIBRARIES} ${PCL_LIBRARIES} pthread)
 target_link_libraries(ex2
   ${catkin_LIBRARIES}
   ${PCL_LIBRARIES}
@@ -194,6 +203,13 @@ target_link_libraries(tof_slam_filter_save
 target_link_libraries(slam_start
   ${catkin_LIBRARIES}
   ${PCL_LIBRARIES}
+)
+target_link_libraries(stereo_pub
+  ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
+  ${OpenCV_INCLUDE_DIRS}
+  ${OpenCV_LIBS}
+  ${xvsdk_LIBRARIES}
 )
 
 #############
