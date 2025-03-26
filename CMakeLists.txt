@@ -127,6 +127,9 @@ add_executable(tof_slam_color src/tof_slam_color.cpp)
 add_executable(tof_slam_filter_save src/tof_slam_filter_save.cpp)
 add_executable(slam_start src/slam_start.cpp)
 add_executable(stereo_pub src/stereo_pub.cpp)
+add_executable(slam_6_dof src/slam_6_dof.cpp)
+add_executable(imu_pub src/imu_pub.cpp)
+add_executable(imu_stereo_pub src/imu_stereo_pub.cpp)
 
 
 # Link the libraries for each executable
@@ -211,7 +214,27 @@ target_link_libraries(stereo_pub
   ${OpenCV_LIBS}
   ${xvsdk_LIBRARIES}
 )
-
+target_link_libraries(slam_6_dof
+  ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
+  ${OpenCV_INCLUDE_DIRS}
+  ${OpenCV_LIBS}
+  ${xvsdk_LIBRARIES}
+)
+target_link_libraries(imu_pub
+  ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
+  ${OpenCV_INCLUDE_DIRS}
+  ${OpenCV_LIBS}
+  ${xvsdk_LIBRARIES}
+)
+target_link_libraries(imu_stereo_pub
+  ${catkin_LIBRARIES}
+  ${PCL_LIBRARIES}
+  ${OpenCV_INCLUDE_DIRS}
+  ${OpenCV_LIBS}
+  ${xvsdk_LIBRARIES}
+)
 #############
 ## Install ##
 #############
